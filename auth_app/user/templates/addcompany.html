@@ -1,0 +1,28 @@
+{% extends 'navbar.html' %}
+{% block body %}
+<div class="container wrapper" id="addcompany">
+<div class="modal-body">
+    <form method="POST" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        {{ form.company.label() }}
+        {{ form.company(class="form-control") }}
+        {% if form.company.errors %}
+        {% for error in form.company.errors %}
+        <span class="text-danger">{{ error }}</span></br>
+        {% endfor %}
+        {% endif %}
+        {{ form.apply.label() }}
+        {{ form.apply }}
+        {{ form.designation.label() }}
+        {{ form.designation(class="form-control") }}
+        {{ form.status.label() }}
+        {{ form.status(class="form-control") }}
+        {{ form.remarks.label() }}
+        {{ form.remarks(class="form-control") }}
+        {{ form.submit(class="btn btn-primary mt-3") }}
+    </form>
+</div>
+</div>
+    {% endblock %}
+    
+  

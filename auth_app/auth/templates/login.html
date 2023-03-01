@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block body %}
+    <div class="container">
+        <div class="wrapper">
+        <form  method="POST">
+            {{ form.hidden_tag() }}
+
+            <legend id="ress" class="title" >Login</legend> 
+            
+            <div class="form-group my-4">
+                {{ form.email.label(class="form-label") }}
+                    {% if form.email.errors %}
+                        {{ form.email(class="form-control is-invalid") }}
+                        {% for error in form.email.errors %}
+                            <span class="invalid-feedback">{{ error }}</span>
+                        {% endfor %}
+                    {% else %}
+                        {{ form.email(class="form-control") }}
+                    {% endif %}
+                
+            </div>
+
+            <div class="form-group my-4 ">
+                {{ form.password.label(class="form-label") }}
+                    {% if form.password.errors %}
+                        {{ form.password(class="form-control is-invalid") }}
+                        {% for error in form.password.errors %}
+                            <span class="invalid-feedback">{{ error }}</span>
+                        {% endfor %}
+                    {% else %}
+                        {{ form.password(class="form-control") }}
+                    {% endif %}
+            </div>
+
+            <div class="form-group my-4 form-label">
+                {{ form.remember(class="form-check-input") }}
+                {{ form.remember.label(class="form-check-label") }}
+            </div>
+
+            <div class="form-group my-4">
+                {{ form.submit(class="btn btnn btn-primary") }}
+                <small class="text-muted ml-4 fgt">
+                    <a href="{{ url_for('auth.reset_request') }}">Forgot Password?</a>
+                </small>
+            </div>
+        </form>
+        </div>
+    </div>
+{% endblock %}

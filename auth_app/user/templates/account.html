@@ -1,0 +1,142 @@
+{% extends "navbar.html" %}
+
+{% block body %}
+        <div  class="box container-lg">
+            <div class="left text-center">
+                <div id="round">
+                    <img src="{{ profile_picture }}" class="profile_picture img-circle" alt="profile picture">
+                </div>
+
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#updateProfiePicture">
+                    Update
+                </button>
+            </div>
+
+            <div class="right">
+                <h3>{{ current_user.username }}</h3>
+                <p class="text-muted">{{ current_user.email }}</p>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="updateProfiePicture" tabindex="-1" aria-labelledby="updateProfiePictureLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="updateProfiePictureLabel">Update Profile Picture</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="POST" enctype="multipart/form-data">
+                            {{ update_profile_picture_form.hidden_tag() }}
+
+                            <div class="form-group my-4">
+                                {{ update_profile_picture_form.picture.label() }}
+                                {{ update_profile_picture_form.picture(class="form-control-file") }}
+                                {% if update_profile_picture_form.picture.errors %}
+                                {% for error in update_profile_picture_form.picture.errors %}
+                                <span class="text-danger">{{ error }}</span></br>
+                                {% endfor %}
+                                {% endif %}
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <div class="form-group">
+                                    {{ update_profile_picture_form.submit(class="btn btn-primary") }}
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- flash messages -->
+        <!--{% with messages = get_flashed_messages(with_categories=true) %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }} text-center">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endwith %} -->
+
+
+                <div id="choose2" class="accordion-item">
+                    <h2 class="accordion-header" id="headingPassword">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePassword" aria-expanded="false" aria-controls="collapsePassword">
+                            Change Password
+                        </button>
+                    </h2>
+
+                    <div id="collapsePassword" class="accordion-collapse collapse" aria-labelledby="headingPassword" data-bs-parent="#change">
+                        <div class="accordion-body">
+                            <div class="container">
+                                <form  id="reduceheight" method="POST">
+                                    {{ change_password_form.hidden_tag() }}
+
+                                    <div class="form-group my-4">
+                                        {{ change_password_form.old_password.label(class="form-label") }}
+                                        {% if change_password_form.old_password.errors %}
+                                            {{ change_password_form.old_password(class="form-control is-invalid") }}
+                                            {% for error in change_password_form.old_password.errors %}
+                                                <span class="invalid-feedback">{{ error }}</span>
+                                            {% endfor %}
+                                        {% else %}
+                                            {{ change_password_form.old_password(class="form-control") }}
+                                        {% endif %}
+                                    </div>
+
+                                    <div class="form-group my-4">
+                                        {{ change_password_form.new_password.label(class="form-label") }}
+                                        {% if change_password_form.new_password.errors %}
+                                            {{ change_password_form.new_password(class="form-control is-invalid") }}
+                                            {% for error in change_password_form.new_password.errors %}
+                                                <span class="invalid-feedback">{{ error }}</span>
+                                            {% endfor %}
+                                        {% else %}
+                                            {{ change_password_form.new_password(class="form-control") }}
+                                        {% endif %}
+                                    </div>
+
+                                    <div class="form-group my-4">
+                                        {{ change_password_form.new_confirm_password.label(class="form-label") }}
+                                        {% if change_password_form.new_confirm_password.errors %}
+                                            {{ change_password_form.new_confirm_password(class="form-control is-invalid") }}
+                                            {% for error in change_password_form.new_confirm_password.errors %}
+                                                <span class="invalid-feedback">{{ error }}</span>
+                                            {% endfor %}
+                                        {% else %}
+                                            {{ change_password_form.new_confirm_password(class="form-control") }}
+                                        {% endif %}
+                                    </div>
+
+                                    <div class="form-group my-4">
+                                        {{ change_password_form.submit(class="btn btn-primary") }}
+                                    </div>
+                                </form>
+                            </div><!-- container-->
+                        </div><!-- accordian body-->
+                    </div><!-- collapeEmail -->
+                </div><!-- accordion item -->
+
+            </div><!-- accordian -->
+        </div><!-- container-lg -->
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        <script>
+            var myModal = document.getElementById('myModal')
+            var myInput = document.getElementById('myInput')
+
+            myModal.addEventListener('shown.bs.modal', function () {
+                            myInput.focus()
+                        })
+        </script>
+    {% endblock %}
+
+
+
+
+
+

@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block body %}
+    <div class="container wrapper">
+        <form method="POST">
+            {{ form.hidden_tag() }}
+
+            <legend id="ress" class="title mb-4 border-bottom title">Registration Form</legend>
+            <div class="form-group my-4">
+                {{ form.username.label(class="form-label") }}
+                {% if form.username.errors %}
+                    {{ form.username(class="form-control is-invalid") }}
+                    {% for error in form.username.errors %}
+                        <span class="invalid-feedback">{{ error }}</span>
+                    {% endfor %}
+                {% else %}
+                    {{ form.username(class="form-control") }}
+                {% endif %}
+            </div>
+
+            <div class="form-group my-4">
+                {{ form.email.label(class="form-label") }}
+                {% if form.email.errors %}
+                    {{ form.email(class="form-control is-invalid") }}
+                    {% for error in form.email.errors %}
+                        <span class="invalid-feedback">{{ error }}</span>
+                    {% endfor %}
+                {% else %}
+                    {{ form.email(class="form-control") }}
+                {% endif %}
+            </div>
+
+            <div class="form-group my-4">
+                {{ form.password.label(class="form-label") }}
+                {% if form.password.errors %}
+                    {{ form.password(class="form-control is-invalid") }}
+                    {% for error in form.password.errors %}
+                        <span class="invalid-feedback">{{ error }}</span>
+                    {% endfor %}
+                {% else %}
+                    {{ form.password(class="form-control") }}
+                {% endif %}
+            </div>
+
+            <div class="form-group my-4">
+                {{ form.confirm_password.label(class="form-label") }}
+                {% if form.confirm_password.errors %}
+                    {{ form.confirm_password(class="form-control is-invalid") }}
+                    {% for error in form.confirm_password.errors %}
+                        <span class="invalid-feedback">{{ error }}</span>
+                    {% endfor %}
+                {% else %}
+                    {{ form.confirm_password(class="form-control") }}
+                {% endif %}
+            </div>
+            
+            <div class="form-group my-4">
+                {{ form.submit( class="btn btnn btn-primary") }}
+            </div>
+        </form>
+    </div>
+{% endblock %}
